@@ -1,6 +1,14 @@
+    @Value("${http.time.out}")
+    private Integer timeOut;
 
-spring.application.name=config-server
-#server.servlet.context-path=/config-server
-server.port=8880
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate(clientHttpRequestFactory());
+    }
 
-spring.cloud.config.server.git.uri=https://github.com/mfaisalhyder/cloud-config-server.git
+    private ClientHttpRequestFactory clientHttpRequestFactory() {
+        HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
+        factory.setReadTimeout(timeOut);
+        factory.setConnectTimeout(timeOut);
+        return factory;
+    }
