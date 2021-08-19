@@ -4,7 +4,7 @@ server:
     context-path: /order-service
 
 profile:
-  name: Dev
+  name: Dev-Profile
 
 order-service:
   auth:
