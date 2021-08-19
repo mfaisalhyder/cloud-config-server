@@ -1,14 +1,1 @@
-    @Value("${http.time.out}")
-    private Integer timeOut;
-
-    @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate(clientHttpRequestFactory());
-    }
-
-    private ClientHttpRequestFactory clientHttpRequestFactory() {
-        HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
-        factory.setReadTimeout(timeOut);
-        factory.setConnectTimeout(timeOut);
-        return factory;
-    }
+@Value("#{'${commonservice.authentication.roles}'.split(',')}")
