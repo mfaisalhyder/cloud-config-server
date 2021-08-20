@@ -9,7 +9,7 @@ profile:
 book-service:
   auth:
     userName: user
-    password: b3JkZXItc2VydmljZQ==
+    password: Ym9vay1zZXJ2aWNl
     roles: USER,ADMIN
 
 http:
