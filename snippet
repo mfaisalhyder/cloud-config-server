@@ -1,1 +1,31 @@
+    default RequestEntity<Void> prepareGetRequestEntity(final URI url, final HttpHeaders httpHeaders) {
+        return RequestEntity
+                .get(url)
+                .accept(MediaType.APPLICATION_JSON)
+                .headers(httpHeaders)
+                .header(Headers.PREFER.getKey(), preferFormattedValue())
+                .build();
+    }
 
+    default RequestEntity<Object> preparePostRequestEntity(final URI url, final HttpHeaders httpHeaders, final String json) {
+        return RequestEntity
+                .post(url)
+                .accept(MediaType.APPLICATION_JSON)
+                .headers(httpHeaders)
+                .header(Headers.SUPPRESS_DUPLICATE_DETECTION.getKey(), Headers.SUPPRESS_DUPLICATE_DETECTION.getValue())
+                .header(Headers.PREFER.getKey(), preferReturnFormattedValue())
+                .body(json);
+    }
+
+    default URI toURI(final String endPoint) {
+        try {
+            return new URI(endPoint);
+        } catch (URISyntaxException uriSyntaxException) {
+            throw new Exception(HttpStatus.INTERNAL_SERVER_ERROR, "Invalid URI", uriSyntaxException.getMessage());
+        }
+    }
+
+    default void handleEmptyResponseBody(ResponseEntity<?> responseEntity) {
+        if (responseEntity.getBody() == null)
+            throw new Exception(HttpStatus.NO_CONTENT, HttpStatus.NO_CONTENT.getReasonPhrase(), "Empty Response from Server");
+    }
