@@ -12,6 +12,10 @@ book-service:
     password: Ym9vay1zZXJ2aWNl
     roles: USER,ADMIN
 
+cache-service:
+  apiKey: dXNlcjpZbTl2YXkxelpYSjJhV05s
+  url: http://127.0.0.1/cache-service/api/cache
+
 http:
   time:
     out: 60000
