@@ -29,3 +29,42 @@
         if (responseEntity.getBody() == null)
             throw new Exception(HttpStatus.NO_CONTENT, HttpStatus.NO_CONTENT.getReasonPhrase(), "Empty Response from Server");
     }
+
+
+    private final RedisSimpleJsonCacheService redisSimpleJsonCacheService;
+
+    public <T> T getData(final String key, final Class<T> classType) {
+        log.info("CacheService.getData() ---- Fetching data for key = ".concat(key));
+
+        T data = null;
+        try {
+            JSONObject jsonObject = redisSimpleJsonCacheService.get(key);
+            if (jsonObject != null) {
+                data = JsonUtil.fromJson(jsonObject, classType);
+            }
+        } catch (IOException ioException) {
+            log.error("CacheService.getData() ---- Unable to get Data\n", ioException);
+        }
+
+        log.info("CacheService.getData() ---- Data fetched successfully for key = ".concat(key));
+
+        return data;
+    }
+
+    public boolean saveData(final String key, final Object data, final Long ttl) {
+        log.info("CacheService.saveData() ---- Saving data for key = ".concat(key));
+        try {
+            Map<String, Object> dataMap = JsonUtil.fromObject(data, new TypeReference<Map<String, Object>>() {
+            });
+
+            JSONObject jsonObject = new JSONObject(dataMap);
+
+            redisCacheService.add(key, jsonObject, ttl);
+        } catch (IOException ioException) {
+            log.error("CacheService().saveData() ---- Unable to save Data", ioException);
+            return false;
+        }
+
+        log.info("CacheService.saveData() ---- Data saved successfully for key = ".concat(key));
+        return true;
+    }
