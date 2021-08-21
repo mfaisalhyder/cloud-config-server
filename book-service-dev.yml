@@ -13,7 +13,7 @@ book-service:
     roles: USER,ADMIN
 
 cache-service:
-  apiKey: dXNlcjpZbTl2YXkxelpYSjJhV05s
+  apiKey: dXNlcjpZMkZqYUdVdGMyVnlkbWxqWlE9PQ==
   url: http://127.0.0.1:8882/cache-service/api/cache
 
 http:
