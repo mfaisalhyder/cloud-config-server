@@ -57,9 +57,9 @@ logging:
     max-history: 30
     max-size: 4MB
   level:
-    com:
-      demo:
-        fp:
+    faisal:
+      cloud:
+        app:
           bookservice: INFO
   pattern:
     console: '%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %boldYellow(%logger{36}) - %msg%n'
