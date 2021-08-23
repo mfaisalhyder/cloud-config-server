@@ -4,7 +4,7 @@ server:
     context-path: /book-service
 
 profile:
-  name: Dev
+  name: Dev-Profile-BS
 
 book-service:
   auth:
