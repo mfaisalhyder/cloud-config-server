@@ -15,6 +15,7 @@ book-service:
 cache-service:
   apiKey: dXNlcjpZMkZqYUdVdGMyVnlkbWxqWlE9PQ==
   url: http://127.0.0.1:8883/cache-service/api/cache
+  ttl: 10
 
 http:
   time:
