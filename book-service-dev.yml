@@ -6,6 +6,10 @@ server:
 profile:
   name: Dev
 
+spring:
+  bus:
+    enabled: true
+
 book-service:
   auth:
     userName: user
