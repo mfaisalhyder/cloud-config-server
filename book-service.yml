@@ -3,6 +3,10 @@ server:
   servlet:
     context-path: /book-service
 
+spring:
+  bus:
+    enabled: true
+
 profile:
   name: Default
 
