@@ -35,7 +35,7 @@ spring:
       path: /console
       settings:
         trace: false
-        web-allow-others: false
+        web-allow-others: true
   jpa:
     defer-datasource-initialization: true
     database-platform: org.hibernate.dialect.H2Dialect
