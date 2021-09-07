@@ -1,0 +1,37 @@
+server:
+  port: 8890
+  servlet:
+    context-path: /api-gateway
+
+profile:
+  name: Dev
+
+api-gateway:
+  auth:
+    userName: user
+    password: YXBpLWdhdGV3YXk=
+    roles: USER,ADMIN
+
+cache-service:
+  apiKey: dXNlcjpZMkZqYUdVdGMyVnlkbWxqWlE9PQ==
+  url: http://127.0.0.1:8882/cache-service/api/cache
+  ttl: 10
+
+http:
+  time:
+    out: 60000
+
+logging:
+  file:
+    path: ${spring.application.name}/logs/
+    name: ${spring.application.name}.log
+    max-history: 30
+    max-size: 4MB
+  level:
+    faisal:
+      cloud:
+        app:
+          apigateway: INFO
+  pattern:
+    console: '%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %boldYellow(%logger{36}) - %msg%n'
+    file: '%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %boldYellow(%logger{36}) - %msg%n'
