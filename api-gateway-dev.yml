@@ -24,7 +24,7 @@ http:
 logging:
   file:
     path: ${spring.application.name}/logs/
-    name: ${spring.application.name}.log
+    name: ${logging.file.path}/${spring.application.name}.log
     max-history: 30
     max-size: 4MB
   level:
