@@ -65,3 +65,9 @@ logging:
   pattern:
     console: '%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %boldYellow(%logger{36}) - %msg%n'
     file: '%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %boldYellow(%logger{36}) - %msg%n'
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
