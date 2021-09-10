@@ -17,7 +17,7 @@ spring:
           filters:
             - StripPrefix=0
         - id: cache-service
-          uri: http://127.0.0.1:8882/cache-service/
+          uri: http://127.0.0.1:8882/cache-service
           predicates:
             - Path=/cache/**
           filters:
