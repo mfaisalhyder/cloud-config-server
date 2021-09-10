@@ -13,11 +13,11 @@ spring:
         - id: book-service
           uri: http://127.0.0.1:8885/book-service/
           predicates:
-            - Path: /book/**
+            - Path=/book/**
         - id: cache-service
           uri: http://127.0.0.1:8882/cache-service/
           predicates:
-            - Path: /cache/**
+            - Path=/cache/**
 
 api-gateway:
   auth:
