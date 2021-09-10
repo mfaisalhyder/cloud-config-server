@@ -1,5 +1,5 @@
 server:
-  port: 8890
+  port: 8892
   servlet:
     context-path: /api-gateway
 
@@ -35,3 +35,9 @@ logging:
   pattern:
     console: '%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %boldYellow(%logger{36}) - %msg%n'
     file: '%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %boldYellow(%logger{36}) - %msg%n'
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
