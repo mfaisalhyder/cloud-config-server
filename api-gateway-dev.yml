@@ -15,9 +15,9 @@ spring:
           predicates:
             - Path=/book/**
           filters:
-            - StripPrefix=2
+            - StripPrefix=1
         - id: cache-service
-          uri: http://127.0.0.1:8882/cache-service/cache
+          uri: http://127.0.0.1:8882/cache-service/
           predicates:
             - Path=/cache/**
           filters:
