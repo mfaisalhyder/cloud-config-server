@@ -1,7 +1,7 @@
 server:
   port: 8891
   servlet:
-    context-path: /api-gateway
+    context-path: /api-gateway # SCG ignores context-path
 
 profile:
   name: Dev
@@ -11,7 +11,7 @@ spring:
     gateway:
       routes:
         - id: book-service
-          uri: http://127.0.0.1:8885
+          uri: http://127.0.0.1:8885 # http://127.0.0.1:8885/book-service ## it will not take context-path
           predicates:
             - Path=${server.servlet.context-path}/book/**
           filters:

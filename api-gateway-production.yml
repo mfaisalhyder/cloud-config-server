@@ -1,10 +1,29 @@
 server:
   port: 8892
   servlet:
-    context-path: /api-gateway
+    context-path: /api-gateway # SCG ignores context-path
 
 profile:
   name: Production
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: book-service
+          uri: http://127.0.0.1:8886 # http://127.0.0.1:8885/book-service ## it will not take context-path
+          predicates:
+            - Path=${server.servlet.context-path}/book/**
+          filters:
+            - StripPrefix=0
+            - RewritePath=${server.servlet.context-path}(?<segment>/?.*), /book-service/$\{segment}
+        - id: cache-service
+          uri: http://127.0.0.1:8883
+          predicates:
+            - Path=${server.servlet.context-path}/cache/**
+          filters:
+            - StripPrefix=0
+            - RewritePath=${server.servlet.context-path}(?<segment>/?.*), /cache-service/$\{segment}
 
 api-gateway:
   auth:
@@ -28,10 +47,10 @@ logging:
     max-history: 30
     max-size: 4MB
   level:
-    faisal:
-      cloud:
-        app:
-          apigateway: INFO
+    faisal.cloud.app.apigateway: INFO
+    reactor.netty: DEBUG
+    org.springframework.cloud.gateway: TRACE
+
   pattern:
     console: '%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %boldYellow(%logger{36}) - %msg%n'
     file: '%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %boldYellow(%logger{36}) - %msg%n'
