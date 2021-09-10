@@ -11,17 +11,19 @@ spring:
     gateway:
       routes:
         - id: book-service
-          uri: http://127.0.0.1:8885/book-service/book
+          uri: http://127.0.0.1:8885
           predicates:
-            - Path=/book/**
+            - Path=${server.servlet.context-path}/book/**
           filters:
             - StripPrefix=0
+            - RewritePath=${server.servlet.context-path}(?<segment>/?.*), /book-service/$\{segment}
         - id: cache-service
-          uri: http://127.0.0.1:8882/cache-service
+          uri: http://127.0.0.1:8882
           predicates:
-            - Path=/cache/**
+            - Path=${server.servlet.context-path}/cache/**
           filters:
             - StripPrefix=0
+            - RewritePath=${server.servlet.context-path}(?<segment>/?.*), /cache-service/$\{segment}
 
 api-gateway:
   auth:
