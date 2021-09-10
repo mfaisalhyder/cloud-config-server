@@ -15,11 +15,13 @@ spring:
           predicates:
             - Path=/book/**
           filters:
-            - StripPrefix=1
+            - StripPrefix=2
         - id: cache-service
           uri: http://127.0.0.1:8882/cache-service/cache
           predicates:
             - Path=/cache/**
+          filters:
+            - StripPrefix=0
 
 api-gateway:
   auth:
