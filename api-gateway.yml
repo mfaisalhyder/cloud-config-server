@@ -6,6 +6,19 @@ server:
 profile:
   name: Default
 
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: book-service
+          uri: http://127.0.0.1:8885/book-service/
+          predicates:
+            - Path=/book/**
+        - id: cache-service
+          uri: http://127.0.0.1:8882/cache-service/
+          predicates:
+            - Path=/cache/**
+
 api-gateway:
   auth:
     userName: user
@@ -28,10 +41,10 @@ logging:
     max-history: 30
     max-size: 4MB
   level:
-    faisal:
-      cloud:
-        app:
-          apigateway: INFO
+    faisal.cloud.app.apigateway: INFO
+    reactor.netty: DEBUG
+    org.springframework.cloud.gateway: TRACE
+
   pattern:
     console: '%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %boldYellow(%logger{36}) - %msg%n'
     file: '%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %boldYellow(%logger{36}) - %msg%n'
