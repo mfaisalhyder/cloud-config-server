@@ -11,11 +11,11 @@ spring:
     gateway:
       routes:
         - id: book-service
-          uri: http://127.0.0.1:8885/book-service/
+          uri: http://127.0.0.1:8884/book-service/
           predicates:
             - Path=/book/**
         - id: cache-service
-          uri: http://127.0.0.1:8882/cache-service/
+          uri: http://127.0.0.1:8881/cache-service/
           predicates:
             - Path=/cache/**
 
