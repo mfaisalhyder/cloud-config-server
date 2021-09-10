@@ -11,11 +11,11 @@ spring:
     gateway:
       routes:
         - id: book-service
-          uri: http://127.0.0.1:8885/book-service/
+          uri: http://127.0.0.1:8885/book-service/book
           predicates:
             - Path=/book/**
         - id: cache-service
-          uri: http://127.0.0.1:8882/cache-service/
+          uri: http://127.0.0.1:8882/cache-service/cache
           predicates:
             - Path=/cache/**
 
@@ -41,10 +41,10 @@ logging:
     max-history: 30
     max-size: 4MB
   level:
-    faisal:
-      cloud:
-        app:
-          apigateway: INFO
+    faisal.cloud.app.apigateway: INFO
+    reactor.netty: DEBUG
+    org.springframework.cloud.gateway: TRACE
+
   pattern:
     console: '%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %boldYellow(%logger{36}) - %msg%n'
     file: '%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %boldYellow(%logger{36}) - %msg%n'
