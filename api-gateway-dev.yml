@@ -25,12 +25,6 @@ spring:
             - StripPrefix=0
             - RewritePath=${server.servlet.context-path}(?<segment>/?.*), /cache-service/$\{segment}
 
-api-gateway:
-  auth:
-    userName: user
-    password: YXBpLWdhdGV3YXk=
-    roles: USER,ADMIN
-
 cache-service:
   apiKey: dXNlcjpZMkZqYUdVdGMyVnlkbWxqWlE9PQ==
   url: http://127.0.0.1:8882/cache-service/api/cache
