@@ -11,18 +11,20 @@ spring:
     gateway:
       routes:
         - id: book-service
-          uri: http://127.0.0.1:8886 # http://127.0.0.1:8885/book-service ## it will not take context-path
+          uri: http://127.0.0.1:8886
           predicates:
-            - Path=${server.servlet.context-path}/book/**
+            - Path=${server.servlet.context-path}/refresh/book/**, ${server.servlet.context-path}/book/**
           filters:
             - StripPrefix=0
+            - RewritePath=${server.servlet.context-path}/refresh(?<segment>/?.*), /book-service/actuator/refresh
             - RewritePath=${server.servlet.context-path}(?<segment>/?.*), /book-service/$\{segment}
         - id: cache-service
           uri: http://127.0.0.1:8883
           predicates:
-            - Path=${server.servlet.context-path}/cache/**
+            - Path=${server.servlet.context-path}/refresh/cache/**, ${server.servlet.context-path}/cache/**
           filters:
             - StripPrefix=0
+            - RewritePath=${server.servlet.context-path}/refresh(?<segment>/?.*), /cache-service/actuator/refresh
             - RewritePath=${server.servlet.context-path}(?<segment>/?.*), /cache-service/$\{segment}
 
 cache-service:

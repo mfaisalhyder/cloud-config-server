@@ -23,9 +23,10 @@ spring:
         - id: cache-service
           uri: http://127.0.0.1:8882
           predicates:
-            - Path=${server.servlet.context-path}/cache/**
+            - Path=${server.servlet.context-path}/refresh/cache/**, ${server.servlet.context-path}/cache/**
           filters:
             - StripPrefix=0
+            - RewritePath=${server.servlet.context-path}/refresh(?<segment>/?.*), /cache-service/actuator/refresh
             - RewritePath=${server.servlet.context-path}(?<segment>/?.*), /cache-service/$\{segment}
 
 cache-service:
