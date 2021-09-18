@@ -16,8 +16,10 @@ spring:
             - Path=${server.servlet.context-path}/refresh/book/**, ${server.servlet.context-path}/book/**
           filters:
             - StripPrefix=0
-            - RewritePath=${server.servlet.context-path}/book(?<segment>/?.*), /book-service/$\{segment}
+            #- RewritePath=${server.servlet.context-path}/book/(?<segment>/?.*), /book-service/book/$\{segment} #http://localhost:8891/api-gateway/book/
+            #- RewritePath=${server.servlet.context-path}/refresh(?<segment>/?.*), /book-service/actuator/refresh #http://localhost:8891/api-gateway/refresh/book
             - RewritePath=${server.servlet.context-path}/refresh(?<segment>/?.*), /book-service/actuator/refresh
+            - RewritePath=${server.servlet.context-path}(?<segment>/?.*), /book-service/$\{segment}
         - id: cache-service
           uri: http://127.0.0.1:8882
           predicates:
